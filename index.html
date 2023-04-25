@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Polygon Gas Price Alert</title>
+    <!-- Include the config.js file as a script -->
+    <script src="config.js"></script>
+    <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Polygon Gas Price Alert</h1>
+      <p id="gasPriceInfo" class="description">
+        Alert will ring at 200 gasPriceInfo (reloads / 5 seconds)
+      </p>
+
+      <!-- Move this <p> tag inside the .then() block -->
+      <div class="box">
+        <!-- Add .box class to create a box element -->
+        <p id="proposedGasPrice" class="gas-price"></p>
+        <p id="fastGasPrice" class="gas-price"></p>
+        <!-- Add a button to preview the sound -->
+      </div>
+      <button id="previewButton">
+        Preview Sound
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAh5JREFUSEuVlvFZGzEMxX9vgh4TFCYAJgA2oBM0TNAyAWEC6ARNJygbNExQNmg7AdlA/eSTL/bZF1r/E38+WXp6epIjiiXADh5AsmkM41J5Hnv9i2263jHcHwlhE7h5nBLzgLjG2DROxQrTQ+R4C2w62axBj2C77NRtyvUCnAIfBE9BxQB8Aj4DvvflDh6BL7H3szVwB7iP89FMFBSlyO7oD3AWF1fAQ3LcwE207AxugCfBYMm53oPdR8B0zdcx6Ffw6NFfBCsTX5crWpXlRrCxEdjPAH+C8TsHSOkJvhk46uNkKIZaVosSc8pOELuo30fg1uuRKdoCF8AVYosFn1lqk3wPSinTcg18RzxjuswZ7EDvwI6Ce6fotOqJBnxIcx8ziqsB7DWyORoDBPkCjcrxn6zr2tHBRhvL4iuwSZmiDLY26HXm1MlduhxXEWBUaWfJEoimBn3rkYTpRtX0maLZEApxlnwsBasTcZaLseH7InyxHxPtULSQcaa9YaQaduFvAL3uU1qKUg+4CJxVWHNWEDiY+IHpbM5ZRt6ZGKWpj4qrdtiVWhanbz4KEa2jI//iPXQ+yXKGqNtbC46KcjQ0TrUoipKMtoiLQqEHX5qFwM+Cy3lj/Z+jNwqxV2D1HnTe2z3ENeJultk9mE/h0l+jjYU3uStNd+aj3JFsMK3TvGp4amdXb1RU/y+WitwtrfU6uQzRnWE584Mfu03+Fw2S6CBtIkEZAAAAAElFTkSuQmCC"
+          width="18px"
+        />
+      </button>
+
+      <form id="gasPriceThresholdForm">
+        <label for="gasPriceThreshold">Gas Price Threshold:</label>
+        <input
+          type="number"
+          id="gasPriceThreshold"
+          alt="Gas Price Threshold"
+          value="200"
+          step="1"
+          min="1"
+          max="9999"
+        />
+        <button
+          id="buttonThreashold"
+          type="submit"
+          onclick="handleGasPriceThreshold();"
+        >
+          Update Threshold
+        </button>
+      </form>
+
+      <form id="phoneNumberForm">
+        <label for="phoneNumber">Phone Number :</label>
+        <input
+          type="number"
+          id="phoneNumber"
+          alt="[CountryCode]+[LocalCode]+[PhoneNumber]"
+          placeholder="e.g.   1 12 4678912"
+        />
+        <button id="buttonPhoneNumber" type="submit">
+          Send message to telegram
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAjZJREFUSEuNloFRG0EMRZ8qyHWAU0GODpwK4lRgpwKgA9MBVGB3AFRg6CB0AB3gCpTRru5Oe7sX2Bl7bO+u9PX19c+CLQE0vZWf0+Yny69Nccrztr284uWv5GlgLBLEQqZ4ZZb2GT/dAJQTfBlphLhYUg90wPMQekwvaNmKCKwBffpJOtAtwjXKKlxDJvDL3ap2psgbhC3KZhbnHWFlaBd70E6XfjWEVyAbQVea4Z6BD+DCaXlS2KTPVQXtLhqnv4AdsM4xDV2i9B7lUeBBhc6UDtwAd7MEsWljWmvYFRmNJYnrPSXMVBziDAn6U4XnYazmKupAtqB2uXdE4xlPfQvsBXYKh/mm63IU6DC9a1fCbgxay/slBRXe0ESBVTdb8gpqlWcaA+V/gR/F6Un2ZxX2qNw5FUeU7QjRO+1374HrIU5QUYpmslu77C783pNTYSqxPhy8JzX4nPEP6HHwt/95UU9WRZrIHFxOgvYl4IGMwS/lEtTYCD1YqDVYSIdwQnFuG8xPhlywUg9a3VjLs9acIDh7YxSFF9TnJNhWI2REmE7acJ2yLjgrfKu0kyu4RWWfhLBIUXuSbdAegFefZPtuMvVEYzW/QR7LoWtqobLlfVaO2Kx8eG96gaMmaY8JvgNvRf1tp6yenGZwJlN7xck32VolNhPuoHF75qZT5k+su6JR+lRZRO9ngpuWltRuRVtiy/8VhgoiYOcgWXElpnn5w5nRuicBDRVEWmLQZZJaz/AK4Rj2H5jE6CIdx1ZmAAAAAElFTkSuQmCC"
+            width="16px"
+          />
+        </button>
+      </form>
+
+      <!-- Include the custom.js file as a script -->
+      <script src="custom.js"></script>
+    </div>
+  </body>
+</html>

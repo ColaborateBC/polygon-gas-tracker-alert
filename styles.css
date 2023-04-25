@@ -1,0 +1,123 @@
+/* styles.css */
+body{
+    background-color: #d9c8fc;
+}
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px;
+    text-align: center;
+    background-color: #b6b4b4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 0.5rem;
+    
+    box-shadow: 4px 4px #cc95ff;
+}
+
+.title {
+    color: #7101da;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-shadow: 2px 2px #424242;
+}
+
+.box {
+    background-color: #E5EAF3; /* Set background color of box */
+    padding: 16px; /* Add padding to the box */
+    margin-bottom: 16px; /* Add margin at the bottom of the box */
+    
+    border-radius: 1rem;
+}
+
+.description {
+    margin-bottom: 16px;
+    font-size: 1.2rem;
+    color: #a55be9;
+    
+    text-shadow: 0.5px 0.5px #0f0f0f;
+}
+
+.gas-price {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    color: #7c00f0;
+    
+    text-shadow: 0.5px 0.5px #0f0f0f;
+}
+
+#previewButton {
+    background-color: #E5EAF3; /* Set background color of box */
+    padding: 6px; /* Add padding to the box */
+    margin-bottom: 8px; /* Add margin at the bottom of the box */
+    
+    border-radius: 0.5rem;
+    box-shadow: 3px 3px #a55be9;
+    
+    font-size: 1rem;
+    color: #7c00f0;
+}
+
+#gasPriceThreshold{
+    background-color: #E5EAF3; /* Set background color of box */
+    padding: 2px; /* Add padding to the box */
+    margin-bottom: 2px; /* Add margin at the bottom of the box */
+    
+    border-radius: 0.4rem;
+    
+    box-shadow: 2px 2px #a55be9;
+    
+    font-size: 0.9rem;
+    color: #7c00f0;
+}
+
+#gasPriceThresholdForm{
+    padding: 2px;
+    margin-top: 16px;
+    font-size: 1.2rem;
+    color: #a55be9;
+    text-shadow: 0.5px 0.5px #0f0f0f;
+}
+
+#buttonThreashold {
+    background-color: #E5EAF3; /* Set background color of box */
+    padding: 2.5px; /* Add padding to the box */
+    margin-bottom: 2px; /* Add margin at the bottom of the box */
+    
+    border-radius: 0.3rem;
+    box-shadow: 3px 3px #a55be9;
+    
+    font-size: 0.8rem;
+    color: #7c00f0;
+}
+
+#phoneNumberForm{
+    margin-top: 16px;
+    padding: 16px;
+    background-color: #E5EAF3; /* Set background color of box */
+    padding: 2.5px; /* Add padding to the box */
+    margin-bottom: 2px; /* Add margin at the bottom of the box */
+    
+    border-radius: 0.3rem;
+    box-shadow: 3px 3px #a55be9;
+    
+    font-size: 0.8rem;
+    color: #7c00f0;
+    padding: 2px;
+    margin-top: 16px;
+    font-size: 1.2rem;
+    color: #a55be9;
+    text-shadow: 0.5px 0.5px #0f0f0f;
+}
+
+#buttonPhoneNumber{
+    background-color: #E5EAF3; /* Set background color of box */
+    padding: 2.5px; /* Add padding to the box */
+    margin-bottom: 2px; /* Add margin at the bottom of the box */
+    
+    border-radius: 0.3rem;
+    box-shadow: 3px 3px #a55be9;
+    
+    font-size: 0.8rem;
+    color: #7c00f0;
+}
