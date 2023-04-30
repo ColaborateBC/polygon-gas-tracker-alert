@@ -1,3 +1,5 @@
+import config from "./config.js ";
+
 // Define the audio element and load the sound file
 const alertSound = new Audio(`inalert.mp3`);
 alertSound.volume = 1; // Set volume to 1 (100%)
@@ -7,6 +9,12 @@ let lastProposeGasPrice = 0;
 let lastFastGasPrice = 0;
 let gasPriceThreshold = 200;
 let phoneNumber = 0;
+const TEL_API_KEY = config.TEL_API_KEY;
+const TelegramBot = require('node-telegram-bot-api');
+
+// Create a new instance of the TelegramBot with your API token
+const bot = new TelegramBot(token, { polling: true });
+
 
 // Function to fetch gas price and update the DOM
 const fetchAndUpdateGasPrice = async () => {
