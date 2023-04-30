@@ -13,8 +13,22 @@ const TEL_API_KEY = config.TEL_API_KEY;
 const TelegramBot = require('node-telegram-bot-api');
 
 // Create a new instance of the TelegramBot with your API token
-const bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(TEL_API_KEY, { polling: true });
 
+// Function to send a message to a phone number
+function sendTelegramMessage(phoneNumber, message) {
+  // Format the phone number with the country code
+  const formattedPhoneNumber = `+${phoneNumber}`;
+
+  // Send the message to the phone number
+  bot.sendMessage(formattedPhoneNumber, message)
+    .then(() => {
+      console.log(`Message sent to ${formattedPhoneNumber}: ${message}`);
+    })
+    .catch((error) => {
+      console.error(`Failed to send message to ${formattedPhoneNumber}: ${error}`);
+    });
+}
 
 // Function to fetch gas price and update the DOM
 const fetchAndUpdateGasPrice = async () => {
@@ -110,6 +124,8 @@ document.getElementById("gasPriceThresholdForm").addEventListener("submit", (eve
 document.getElementById("phoneNumberForm").addEventListener("submit", (event) => {
   event.preventDefault(); // Prevent form submission
   phoneNumber = document.getElementById("phoneNumber").value; // Get the value of gasPriceThreshold input field
+  sendTelegramMessage(phoneNumber, "Current gas price is hit"); // Send a message to the phone number
+
   // Call a function in custom.js to handle the parsed value  console.log(phoneNumber);
   // handlePhoneNumber(phoneNumber);
 });
