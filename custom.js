@@ -1,5 +1,3 @@
-import config from "./config.js ";
-
 // Define the audio element and load the sound file
 const alertSound = new Audio(`inalert.mp3`);
 alertSound.volume = 1; // Set volume to 1 (100%)
@@ -9,26 +7,6 @@ let lastProposeGasPrice = 0;
 let lastFastGasPrice = 0;
 let gasPriceThreshold = 200;
 let phoneNumber = 0;
-const TEL_API_KEY = config.TEL_API_KEY;
-const TelegramBot = require('node-telegram-bot-api');
-
-// Create a new instance of the TelegramBot with your API token
-const bot = new TelegramBot(TEL_API_KEY, { polling: true });
-
-// Function to send a message to a phone number
-function sendTelegramMessage(phoneNumber, message) {
-  // Format the phone number with the country code
-  const formattedPhoneNumber = `+${phoneNumber}`;
-
-  // Send the message to the phone number
-  bot.sendMessage(formattedPhoneNumber, message)
-    .then(() => {
-      console.log(`Message sent to ${formattedPhoneNumber}: ${message}`);
-    })
-    .catch((error) => {
-      console.error(`Failed to send message to ${formattedPhoneNumber}: ${error}`);
-    });
-}
 
 // Function to fetch gas price and update the DOM
 const fetchAndUpdateGasPrice = async () => {
@@ -118,14 +96,32 @@ document.getElementById("gasPriceThresholdForm").addEventListener("submit", (eve
   gasPriceThreshold = document.getElementById("gasPriceThreshold").value; // Get the value of gasPriceThreshold input field
   // Call a function in custom.js to handle the parsed value
   handleGasPriceThreshold(gasPriceThreshold);
+  // fetch(`http://localhost:3000/send-message`, {
+  //   method: "POST",
+  // headers: {
+  //   "Content-Type": "application/json"
+  // },
+  //   body: JSON.stringify({ gasPriceThreshold })
+  // })
+  //   .then(response => response.json())
+  //   .then(data => console.log(data))
+  //   .catch(error => console.error(error));
 });
 
 //Submiting the phonenumber for sending to telegram bot 
 document.getElementById("phoneNumberForm").addEventListener("submit", (event) => {
   event.preventDefault(); // Prevent form submission
   phoneNumber = document.getElementById("phoneNumber").value; // Get the value of gasPriceThreshold input field
-  sendTelegramMessage(phoneNumber, "Current gas price is hit"); // Send a message to the phone number
-
+  fetch(`http://localhost:3000/send-message`, {
+    method: "POST",
+    // headers: {
+    //   "Content-Type": "application/json"
+    // },
+    body: JSON.stringify({ phoneNumber, gasPriceThreshold })
+  })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
   // Call a function in custom.js to handle the parsed value  console.log(phoneNumber);
   // handlePhoneNumber(phoneNumber);
 });
