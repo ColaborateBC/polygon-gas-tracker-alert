@@ -6,7 +6,7 @@ alertSound.volume = 1; // Set volume to 1 (100%)
 let lastProposeGasPrice = 0;
 let lastFastGasPrice = 0;
 let gasPriceThreshold = 200;
-let phoneNumber = 0;
+let telId;
 
 // Function to fetch gas price and update the DOM
 const fetchAndUpdateGasPrice = async () => {
@@ -109,15 +109,15 @@ document.getElementById("gasPriceThresholdForm").addEventListener("submit", (eve
 });
 
 //Submiting the phonenumber for sending to telegram bot 
-document.getElementById("phoneNumberForm").addEventListener("submit", (event) => {
+document.getElementById("telegramIdForm").addEventListener("submit", (event) => {
   event.preventDefault(); // Prevent form submission
-  phoneNumber = document.getElementById("phoneNumber").value; // Get the value of gasPriceThreshold input field
-  fetch(`http://localhost:3000/send-message`, {
+  telId = document.getElementById("telegramId").value; // Get the value of gasPriceThreshold input field
+  fetch(`http://localhost:3000/`, {
     method: "POST",
-    // headers: {
-    //   "Content-Type": "application/json"
-    // },
-    body: JSON.stringify({ phoneNumber, gasPriceThreshold })
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ telId, gasPriceThreshold })
   })
     .then(response => response.json())
     .then(data => console.log(data))

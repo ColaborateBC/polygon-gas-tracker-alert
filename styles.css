@@ -91,7 +91,7 @@ body{
     color: #7c00f0;
 }
 
-#phoneNumberForm{
+#telegramIdForm{
     margin-top: 16px;
     padding: 16px;
     background-color: #E5EAF3; /* Set background color of box */
@@ -110,7 +110,7 @@ body{
     text-shadow: 0.5px 0.5px #0f0f0f;
 }
 
-#buttonPhoneNumber{
+#buttonTelegramId{
     background-color: #E5EAF3; /* Set background color of box */
     padding: 2.5px; /* Add padding to the box */
     margin-bottom: 2px; /* Add margin at the bottom of the box */
