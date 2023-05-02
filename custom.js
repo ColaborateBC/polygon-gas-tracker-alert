@@ -74,15 +74,15 @@ const fetchAndUpdateGasPrice = async () => {
 // Fetch and update gas price initially
 fetchAndUpdateGasPrice();
 
-//Update description class in html
-const handleGasPriceThreshold = (gasPriceThreshold) => {
-  document.getElementById("gasPriceInfo").textContent = `Alert will ring at ${gasPriceThreshold} gasPriceInfo (reloads / 5 seconds)`
-};
-
 // Set interval to fetch and update gas price every 10 seconds
 setInterval(() => {
   fetchAndUpdateGasPrice();
 }, 5000); // 5 seconds in milliseconds
+
+//Update description class in html
+const handleGasPriceThreshold = (gasPriceThreshold) => {
+  document.getElementById("gasPriceInfo").textContent = `Alert will ring at ${gasPriceThreshold} gasPriceInfo (reloads / 5 seconds)`
+};
 
 // Add event listener to the preview button
 document.getElementById("previewButton").addEventListener("click", () => {
@@ -108,16 +108,29 @@ document.getElementById("gasPriceThresholdForm").addEventListener("submit", (eve
   //   .catch(error => console.error(error));
 });
 
+//Starting Telegram bot
+document.getElementById("telegramStartBot").addEventListener("submit", (event) => {
+  event.preventDefault(); // Prevent form submission
+  // Redirect user to the bot's chat with start parameter
+  window.open(`https://t.me/PolygonGasMenssagerBot?start=Start`, "_blank");
+  fetch(`http://localhost:3000/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+});
+
 //Submiting the phonenumber for sending to telegram bot 
 document.getElementById("telegramIdForm").addEventListener("submit", (event) => {
   event.preventDefault(); // Prevent form submission
-  telId = document.getElementById("telegramId").value; // Get the value of gasPriceThreshold input field
+  // Redirect user to the bot's chat with start parameter
   fetch(`http://localhost:3000/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ telId, gasPriceThreshold })
+    body: JSON.stringify({ gasPriceThreshold })
   })
     .then(response => response.json())
     .then(data => console.log(data))

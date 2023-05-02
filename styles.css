@@ -121,3 +121,33 @@ body{
     font-size: 0.8rem;
     color: #7c00f0;
 }
+#telegramStartBot{
+    margin-top: 16px;
+    padding: 16px;
+    background-color: #E5EAF3; /* Set background color of box */
+    padding: 2.5px; /* Add padding to the box */
+    margin-bottom: 2px; /* Add margin at the bottom of the box */
+
+    border-radius: 0.3rem;
+    box-shadow: 3px 3px #a55be9;
+
+    font-size: 0.8rem;
+    color: #7c00f0;
+    padding: 2px;
+    margin-top: 16px;
+    font-size: 1.2rem;
+    color: #a55be9;
+    text-shadow: 0.5px 0.5px #0f0f0f;
+}
+
+#buttonTelegramStartBot{
+    background-color: #E5EAF3; /* Set background color of box */
+    padding: 2.5px; /* Add padding to the box */
+    margin-bottom: 2px; /* Add margin at the bottom of the box */
+
+    border-radius: 0.3rem;
+    box-shadow: 3px 3px #a55be9;
+
+    font-size: 0.8rem;
+    color: #7c00f0;
+}
